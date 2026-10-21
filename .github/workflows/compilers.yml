@@ -122,6 +122,11 @@ jobs:
         call "%TOOLCHAIN_SETUP%" || exit /b 1
         cmake --build build --parallel
 
+    - uses: owenthereal/action-upterm@v2
+      if: always()
+      with:
+        limit-access-to-actor: true
+
     - name: Test (Windows)
       if: ${{ runner.os == 'Windows' }}
       shell: cmd
