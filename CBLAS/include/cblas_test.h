@@ -42,7 +42,7 @@
 #define BLAS_FORTRAN_XERBLA_LENARG
 #endif
 #define BLAS_FORTRAN_XERBLA_ARGS \
-  /*not a func-style macro*/(FCHAR F77_srname, void *vinfo BLAS_FORTRAN_XERBLA_LENARG)
+  /*not a func-style macro*/(FCHAR F77_srname, F77_INT *info BLAS_FORTRAN_XERBLA_LENARG)
 
 #define TRUE         1
 #define PASSED       1
@@ -69,7 +69,6 @@ typedef struct { double real; double imag; } CBLAS_TEST_ZOMPLEX;
 #define F77_xerbla 		F77_GLOBAL_SUFFIX(xerbla,XERBLA)
 #define F77_get_blas_xerbla 	F77_GLOBAL_SUFFIX(get_blas_xerbla,GET_BLAS_XERBLA)
 #define F77_set_blas_xerbla 	F77_GLOBAL_SUFFIX(set_blas_xerbla,SET_BLAS_XERBLA)
-typedef void (*BLAS_FORTRAN_XERBLA_callback_t) BLAS_FORTRAN_XERBLA_ARGS;
 void F77_get_blas_xerbla(BLAS_FORTRAN_XERBLA_callback_t *);
 void F77_set_blas_xerbla(BLAS_FORTRAN_XERBLA_callback_t);
 
