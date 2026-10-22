@@ -37,17 +37,9 @@ jobs:
       matrix:
         lib_type: [ shared ]
         toolchain:
-        - FC: gfortran-14
-          name: macos / gfortran / flat_namespace
-          CC: gcc-14
-          os: macos-26
-          CFLAGS: "-Wall -pedantic"
-          FFLAGS: "-Wall -pedantic -Wno-unused-dummy-argument -Wno-unused-variable -Wno-unused-label"
-          flat_namespace: true
-        - FC: gfortran-14
-          name: macos / gfortran / 2-level namespace
-          CC: gcc-14
-          os: macos-26
+        - FC: gfortran
+          CC: gcc
+          os: windows-2025
           CFLAGS: "-Wall -pedantic"
           FFLAGS: "-Wall -pedantic -Wno-unused-dummy-argument -Wno-unused-variable -Wno-unused-label"
 
