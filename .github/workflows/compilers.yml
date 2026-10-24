@@ -3,7 +3,7 @@ name: Compilers
 # Build and test BLAS, CBLAS, LAPACK, and LAPACKE with a variety of compilers:
 # GFortran, NAG Fortran Compiler, LLVM Flang, Intel oneAPI compilers and the
 # Arm Toolchain for Linux.  Each of them is exercised against static and against
-# shared libraries, always in Release mode.
+# shared libraries, always in Debug mode.
 #
 # The NAG Fortran Compiler is licence managed and its key is tied to the
 # platform it was issued for, so each of its configurations reads a repository
@@ -73,7 +73,7 @@ jobs:
       run: |
         [ -z "${TOOLCHAIN_SETUP-}" ] || source "${TOOLCHAIN_SETUP}"
         cmake -B build -G Ninja \
-          -D CMAKE_BUILD_TYPE=Release \
+          -D CMAKE_BUILD_TYPE=Debug \
           -D CMAKE_Fortran_COMPILER="${FC}" \
           -D CMAKE_C_COMPILER="${CC}" \
           -D CMAKE_INSTALL_PREFIX=${{ github.workspace }}/lapack_install \
@@ -96,7 +96,7 @@ jobs:
       working-directory: ${{ github.workspace }}/build
       run: |
         [ -z "${TOOLCHAIN_SETUP-}" ] || source "${TOOLCHAIN_SETUP}"
-        ctest -C Release --schedule-random --output-on-failure --timeout 1800 --parallel
+        ctest -C Debug --schedule-random --output-on-failure --timeout 1800 --parallel
 
     - name: Configure CMake (Windows)
       if: ${{ runner.os == 'Windows' }}
@@ -104,7 +104,7 @@ jobs:
       run: |
         call "%TOOLCHAIN_SETUP%" || exit /b 1
         cmake -B build -G Ninja ^
-          -D CMAKE_BUILD_TYPE=Release ^
+          -D CMAKE_BUILD_TYPE=Debug ^
           -D CMAKE_Fortran_COMPILER=%FC% ^
           -D CMAKE_C_COMPILER=%CC% ^
           -D CMAKE_INSTALL_PREFIX=${{ github.workspace }}\lapack_install ^
@@ -128,7 +128,7 @@ jobs:
       working-directory: ${{ github.workspace }}\build
       run: |
         call "%TOOLCHAIN_SETUP%" || exit /b 1
-        ctest -C Release --schedule-random --output-on-failure --timeout 1800 --parallel
+        ctest -C Debug --schedule-random --output-on-failure --timeout 1800 --parallel
 
     - name: Upload test results
       id: upload-test-results
